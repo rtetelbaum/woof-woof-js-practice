@@ -19,7 +19,6 @@ function toggleFilter(event) {
 		barArray.forEach((span) => {
 				if (span.dataset.status === "false") {
 					span.style.display = "none"
-
 				}
 			})
 	} else if (event.target.textContent === "Filter good dogs: ON") {
@@ -35,19 +34,13 @@ function toggleFilter(event) {
 function fetchGetBar() {
 	fetch('http://localhost:3000/pups')
 		.then(response => response.json())
-		.then(pupsData => {
-			console.log(pupsData)
-			renderBar(pupsData)
-		})
+		.then(pupsData => renderBar(pupsData))
 }
 
 function fetchGetPup(event) {
 	fetch(`http://localhost:3000/pups/${event.target.dataset.id}`)
 		.then(response => response.json())
-		.then(pupData => {
-			console.log(pupData)
-			renderInfo(pupData)
-		})
+		.then(pupData => renderInfo(pupData))
 }
 
 function fetchPatchPup(event) {
@@ -65,10 +58,7 @@ function fetchPatchPup(event) {
 		body: JSON.stringify(data),
 	})
 		.then(response => response.json())
-		.then(newData => {
-			console.log('Success:', newData);
-			renderInfo(newData)
-		})
+		.then(newData => renderInfo(newData))
 }
 
 // RENDERERS
